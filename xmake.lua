@@ -79,7 +79,7 @@ rule("binaryrule")
         local filename = target:name() .. extstr 
 
         local destdir = "../000_packages/lualib-5.3.6.pkg/$(plat)/$(arch)/bin/$(mode)"
-        if not os.exists("$(buildir)") then os.mkdir(destdir) end 
+        if not os.exists(destdir) then os.mkdir(destdir) end 
         local destfile = path.join(destdir, filename) 
         if os.exists(destfile) then os.rm(destfile) end 
 
