@@ -4,8 +4,8 @@ set_project("001_lua")
 set_version("5.3.6", {build = "%Y%m%d%H%M"})
 set_xmakever("2.2.5")
 set_warnings("all", "error")
-set_languages("c99", "cxx11")
 
+set_languages("gnu99", "cxx11")
 add_cxflags("-Wno-error=deprecated-declarations", "-fno-strict-aliasing")
 add_cxflags("-O2", "-Wall", "-Wextra", "-fPIC")
 
