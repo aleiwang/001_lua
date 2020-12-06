@@ -13,7 +13,7 @@ add_defines("LUA_COMPAT_5_2=1")
 set_strip("all")
 
 
-target("lualib") 
+target("lualib-5.3.6") 
     set_kind("static")
     add_headerfiles("lua-5.3.6/src/*.h")
     add_files("lua-5.3.6/src/lapi.c"
@@ -53,17 +53,17 @@ target("lualib")
 
 
 target("lua")  
- 	add_deps("lualib")
+ 	add_deps("lualib-5.3.6")
     set_kind("binary")
     add_files("lua-5.3.6/src/lua.c")
-	add_links("lualib")
+	add_links("lualib-5.3.6")
 	add_rules("binaryrule")
 
 target("luac")  
- 	add_deps("lualib")
+ 	add_deps("lualib-5.3.6")
     set_kind("binary")
     add_files("lua-5.3.6/src/luac.c")
-	add_links("lualib")
+	add_links("lualib-5.3.6")
 	add_rules("binaryrule")
 
 
@@ -75,7 +75,7 @@ rule("binaryrule")
         local targetdir = target:targetdir() 
         local filename = target:name() .. extstr 
 
-        local destdir = "../000_packages/lualib.pkg/$(plat)/$(arch)/bin/$(mode)"
+        local destdir = "../000_packages/lualib-5.3.6.pkg/$(plat)/$(arch)/bin/$(mode)"
         if not os.exists("$(buildir)") then os.mkdir(destdir) end 
         local destfile = path.join(destdir, filename) 
         if os.exists(destfile) then os.rm(destfile) end 
