@@ -12,9 +12,13 @@ add_cxflags("-O2", "-Wall", "-Wextra", "-fPIC")
 add_defines("LUA_COMPAT_5_2=1")
 set_strip("all")
 
+if is_plat("linux") then
+    add_defines("LUA_USE_LINUX=1")
+    add_links("dl", "readline")
+end
 
 target("lualib-5.3.6") 
-    set_kind("static")
+    set_kind("static")    
     add_headerfiles("lua-5.3.6/src/*.h")
     add_files("lua-5.3.6/src/lapi.c"
     	, "lua-5.3.6/src/lcode.c"
@@ -65,7 +69,6 @@ target("luac")
     add_files("lua-5.3.6/src/luac.c")
 	add_links("lualib-5.3.6")
 	add_rules("binaryrule")
-
 
 rule("binaryrule")
     set_extensions("", ".exe") 
